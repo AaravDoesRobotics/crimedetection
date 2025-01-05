@@ -1,28 +1,18 @@
-platform :ios, '12.2'
-
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+platform :ios, '11.0'
 
 target 'crimedetection' do
-  config = use_native_modules!
+  use_frameworks!
 
-  # Use modular headers globally for all pods
-  use_modular_headers!
+  # Correct paths to React Native pods
+  pod 'React-Core', :path => '../node_modules/react-native/ReactCommon'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
 
-  use_react_native!(
-    :path => config[:reactNativePath],
-    # Add any other React Native configurations if needed
-  )
+  # Firebase or other dependencies
+  pod 'Firebase/Core'
 
-  # Specific Firebase dependencies with modular headers
-  pod 'Firebase/Core', :modular_headers => true
-  pod 'Firebase/Firestore', :modular_headers => true
-  pod 'Firebase/Analytics', :modular_headers => true
-  # Add more Firebase dependencies as needed
-
-  target 'crimedetectionTests' do
-    inherit! :complete
-    # Pods for testing
+  post_install do |installer|
+    react_native_post_install(installer)
   end
-  #fill line
 end

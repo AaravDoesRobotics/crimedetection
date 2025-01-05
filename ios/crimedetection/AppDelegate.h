@@ -1,6 +1,11 @@
-#import <RCTAppDelegate.h>
-#import <UIKit/UIKit.h>
+import Firebase
 
-@interface AppDelegate : RCTAppDelegate
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
 
-@end
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
+}
