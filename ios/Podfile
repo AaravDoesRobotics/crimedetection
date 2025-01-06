@@ -11,7 +11,7 @@ target 'crimedetection' do
 
   # Firebase or other dependencies
   pod 'Firebase/Core'
-
+a
   post_install do |installer|
     react_native_post_install(installer)
   end
